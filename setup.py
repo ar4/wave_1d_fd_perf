@@ -27,7 +27,7 @@ libvc5_gcc_Ofast = Extension(name='wave_1d_fd_perf.libvc5_gcc_Ofast', sources=['
 
 numpy.distutils.core.setup(
         name='wave_1d_fd_perf',
-        version='0.0.6',
+        version='0.0.7',
         description='Performance analysis of different implementations of 1d finite difference wave propagation',
         url='https://github.com/ar4/wave_1d_fd_perf',
         author='Alan Richardson',

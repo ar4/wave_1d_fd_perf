@@ -1,4 +1,4 @@
-void step(
+void step( \
     float * restrict f,
     float * restrict fp,
     const int nx_padded,

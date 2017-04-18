@@ -1,11 +1,11 @@
 """Propagate a 1D wavefield using different implementations of an 8th order
 finite difference method so that runtimes can be compared.
 """
-import sysconfig
 import concurrent.futures
 from ctypes import c_int, c_float
 import numpy as np
 from numba import jit
+import wave_1d_fd_perf
 from wave_1d_fd_perf import vfortran1
 from wave_1d_fd_perf import vfortran2
 from wave_1d_fd_perf import vfortran3
@@ -353,7 +353,8 @@ class VC1_gcc(Propagator):
     """A C implementation."""
     def __init__(self, model, dx, dt=None):
         super(VC1_gcc, self).__init__(model, dx, dt)
-        self._libvc1 = np.ctypeslib.load_library('libvc1_gcc.{}'.format(sysconfig.get_config_var('SOABI')), '.')
+
+        self._libvc1 = np.ctypeslib.load_library('libvc1_gcc', wave_1d_fd_perf.__path__[0])
         self._libvc1.step.argtypes = \
                 [np.ctypeslib.ndpointer(dtype=np.float32, ndim=1,
                                         shape=(self.nx_padded),
@@ -394,7 +395,7 @@ class VC2_gcc_O2(Propagator):
     """Same as VC1, but using model_padded2_dt2."""
     def __init__(self, model, dx, dt=None):
         super(VC2_gcc_O2, self).__init__(model, dx, dt)
-        self._libvc1 = np.ctypeslib.load_library('libvc2_gcc_O2', '.')
+        self._libvc1 = np.ctypeslib.load_library('libvc2_gcc_O2', wave_1d_fd_perf.__path__[0])
         self._libvc1.step.argtypes = \
                 [np.ctypeslib.ndpointer(dtype=np.float32, ndim=1,
                                         shape=(self.nx_padded),
@@ -435,7 +436,7 @@ class VC2_gcc_O3(Propagator):
     """Same as VC2, but using -O3."""
     def __init__(self, model, dx, dt=None):
         super(VC2_gcc_O3, self).__init__(model, dx, dt)
-        self._libvc1 = np.ctypeslib.load_library('libvc2_gcc_O3', '.')
+        self._libvc1 = np.ctypeslib.load_library('libvc2_gcc_O3', wave_1d_fd_perf.__path__[0])
         self._libvc1.step.argtypes = \
                 [np.ctypeslib.ndpointer(dtype=np.float32, ndim=1,
                                         shape=(self.nx_padded),
@@ -476,7 +477,7 @@ class VC2_gcc_Ofast(Propagator):
     """Same as VC2, but using -Ofast."""
     def __init__(self, model, dx, dt=None):
         super(VC2_gcc_Ofast, self).__init__(model, dx, dt)
-        self._libvc1 = np.ctypeslib.load_library('libvc2_gcc_Ofast', '.')
+        self._libvc1 = np.ctypeslib.load_library('libvc2_gcc_Ofast', wave_1d_fd_perf.__path__[0])
         self._libvc1.step.argtypes = \
                 [np.ctypeslib.ndpointer(dtype=np.float32, ndim=1,
                                         shape=(self.nx_padded),
@@ -518,7 +519,7 @@ class VC2_gcc_Ofast_autopar(Propagator):
     def __init__(self, model, dx, dt=None):
         super(VC2_gcc_Ofast_autopar, self).__init__(model, dx, dt)
         self._libvc1 = np.ctypeslib.load_library('libvc2_gcc_Ofast_autopar',
-                                                 '.')
+                                                 wave_1d_fd_perf.__path__[0])
         self._libvc1.step.argtypes = \
                 [np.ctypeslib.ndpointer(dtype=np.float32, ndim=1,
                                         shape=(self.nx_padded),
@@ -559,7 +560,7 @@ class VC3_gcc(Propagator):
     """A C implementation with OpenMP of inner loop."""
     def __init__(self, model, dx, dt=None):
         super(VC3_gcc, self).__init__(model, dx, dt)
-        self._libvc2 = np.ctypeslib.load_library('libvc3_gcc', '.')
+        self._libvc2 = np.ctypeslib.load_library('libvc3_gcc', wave_1d_fd_perf.__path__[0])
         self._libvc2.step.argtypes = \
                 [np.ctypeslib.ndpointer(dtype=np.float32, ndim=1,
                                         shape=(self.nx_padded),
@@ -600,7 +601,7 @@ class VC4_gcc(Propagator):
     """A C implementation with OpenMP of outer loop."""
     def __init__(self, model, dx, dt=None):
         super(VC4_gcc, self).__init__(model, dx, dt)
-        self._libvc3 = np.ctypeslib.load_library('libvc4_gcc', '.')
+        self._libvc3 = np.ctypeslib.load_library('libvc4_gcc', wave_1d_fd_perf.__path__[0])
         self._libvc3.step.argtypes = \
                 [np.ctypeslib.ndpointer(dtype=np.float32, ndim=1,
                                         shape=(self.nx_padded),
@@ -641,7 +642,7 @@ class VC5_gcc_O2(Propagator):
     """Same as VC4 but using model_padded2_dt2."""
     def __init__(self, model, dx, dt=None):
         super(VC5_gcc_O2, self).__init__(model, dx, dt)
-        self._libvc3 = np.ctypeslib.load_library('libvc5_gcc_O2', '.')
+        self._libvc3 = np.ctypeslib.load_library('libvc5_gcc_O2', wave_1d_fd_perf.__path__[0])
         self._libvc3.step.argtypes = \
                 [np.ctypeslib.ndpointer(dtype=np.float32, ndim=1,
                                         shape=(self.nx_padded),
@@ -682,7 +683,7 @@ class VC5_gcc_O3(Propagator):
     """Same as VC5 but using -O3."""
     def __init__(self, model, dx, dt=None):
         super(VC5_gcc_O3, self).__init__(model, dx, dt)
-        self._libvc3 = np.ctypeslib.load_library('libvc5_gcc_O3', '.')
+        self._libvc3 = np.ctypeslib.load_library('libvc5_gcc_O3', wave_1d_fd_perf.__path__[0])
         self._libvc3.step.argtypes = \
                 [np.ctypeslib.ndpointer(dtype=np.float32, ndim=1,
                                         shape=(self.nx_padded),
@@ -723,7 +724,7 @@ class VC5_gcc_Ofast(Propagator):
     """Same as VC5 but using -Ofast."""
     def __init__(self, model, dx, dt=None):
         super(VC5_gcc_Ofast, self).__init__(model, dx, dt)
-        self._libvc3 = np.ctypeslib.load_library('libvc5_gcc_Ofast', '.')
+        self._libvc3 = np.ctypeslib.load_library('libvc5_gcc_Ofast', wave_1d_fd_perf.__path__[0])
         self._libvc3.step.argtypes = \
                 [np.ctypeslib.ndpointer(dtype=np.float32, ndim=1,
                                         shape=(self.nx_padded),

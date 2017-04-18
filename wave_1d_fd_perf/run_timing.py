@@ -12,9 +12,9 @@ from wave_1d_fd_perf.test_wave_1d_fd_perf import ricker
 def run_timing_num_steps():
     """Time implementations as num_steps varies."""
 
-    num_repeat = 2
+    num_repeat = 10
 
-    num_steps = range(0, 50, 25)
+    num_steps = range(0, 110, 10)
     model_size = 1000
     versions = _versions()
 
@@ -30,10 +30,10 @@ def run_timing_num_steps():
 def run_timing_model_size():
     """Time implementations as model size varies."""
 
-    num_repeat = 2
+    num_repeat = 10
 
     num_steps = 10
-    model_sizes = range(100, 1100, 100)
+    model_sizes = range(200, 2200, 200)
     versions = _versions()
 
     times = pd.DataFrame(columns=['version', 'num_steps', 'model_size', 'time'])

@@ -5,25 +5,25 @@ vfortran1 = numpy.distutils.core.Extension(name='wave_1d_fd_perf.vfortran1', sou
 vfortran2 = numpy.distutils.core.Extension(name='wave_1d_fd_perf.vfortran2', sources=['wave_1d_fd_perf/vfortran2.f90'], extra_compile_args=['-fopenmp'])
 vfortran3 = numpy.distutils.core.Extension(name='wave_1d_fd_perf.vfortran3', sources=['wave_1d_fd_perf/vfortran3.f90'], extra_compile_args=['-fopenmp'])
 
-libvc1_gcc = Extension(name='wave_1d_fd_perf.libvc1_gcc', sources=['wave_1d_fd_perf/vc1.c'], extra_compile_args=['-march=native', '-O3'])
+libvc1_gcc = Extension(name='wave_1d_fd_perf.libvc1_gcc', sources=['wave_1d_fd_perf/vc1.c'], extra_compile_args=['-march=native', '-O3', '-std=c99'])
 
-libvc2_gcc_O2 = Extension(name='wave_1d_fd_perf.libvc2_gcc_O2', sources=['wave_1d_fd_perf/vc2.c'], extra_compile_args=['-march=native', '-O2'])
+libvc2_gcc_O2 = Extension(name='wave_1d_fd_perf.libvc2_gcc_O2', sources=['wave_1d_fd_perf/vc2.c'], extra_compile_args=['-march=native', '-O2', '-std=c99'])
 
-libvc2_gcc_O3 = Extension(name='wave_1d_fd_perf.libvc2_gcc_O3', sources=['wave_1d_fd_perf/vc2.c'], extra_compile_args=['-march=native', '-O3'])
+libvc2_gcc_O3 = Extension(name='wave_1d_fd_perf.libvc2_gcc_O3', sources=['wave_1d_fd_perf/vc2.c'], extra_compile_args=['-march=native', '-O3', '-std=c99'])
 	
-libvc2_gcc_Ofast = Extension(name='wave_1d_fd_perf.libvc2_gcc_Ofast', sources=['wave_1d_fd_perf/vc2.c'], extra_compile_args=['-march=native', '-Ofast'])
+libvc2_gcc_Ofast = Extension(name='wave_1d_fd_perf.libvc2_gcc_Ofast', sources=['wave_1d_fd_perf/vc2.c'], extra_compile_args=['-march=native', '-Ofast', '-std=c99'])
 
-libvc2_gcc_Ofast_autopar = Extension(name='wave_1d_fd_perf.libvc2_gcc_Ofast_autopar', sources=['wave_1d_fd_perf/vc2.c'], extra_compile_args=['-march=native', '-Ofast', '-floop-parallelize-all', '-ftree-parallelize-loops=4'])
+libvc2_gcc_Ofast_autopar = Extension(name='wave_1d_fd_perf.libvc2_gcc_Ofast_autopar', sources=['wave_1d_fd_perf/vc2.c'], extra_compile_args=['-march=native', '-Ofast', '-floop-parallelize-all', '-ftree-parallelize-loops=4', '-std=c99'])
 	
-libvc3_gcc = Extension(name='wave_1d_fd_perf.libvc3_gcc', sources=['wave_1d_fd_perf/vc3.c'], extra_compile_args=['-march=native', '-O3', '-fopenmp'])
+libvc3_gcc = Extension(name='wave_1d_fd_perf.libvc3_gcc', sources=['wave_1d_fd_perf/vc3.c'], extra_compile_args=['-march=native', '-O3', '-fopenmp', '-std=c99'])
 
-libvc4_gcc = Extension(name='wave_1d_fd_perf.libvc4_gcc', sources=['wave_1d_fd_perf/vc4.c'], extra_compile_args=['-march=native', '-O3', '-fopenmp'])
+libvc4_gcc = Extension(name='wave_1d_fd_perf.libvc4_gcc', sources=['wave_1d_fd_perf/vc4.c'], extra_compile_args=['-march=native', '-O3', '-fopenmp', '-std=c99'])
 
-libvc5_gcc_O2 = Extension(name='wave_1d_fd_perf.libvc5_gcc_O2', sources=['wave_1d_fd_perf/vc5.c'], extra_compile_args=['-march=native', '-O2', '-fopenmp'])
+libvc5_gcc_O2 = Extension(name='wave_1d_fd_perf.libvc5_gcc_O2', sources=['wave_1d_fd_perf/vc5.c'], extra_compile_args=['-march=native', '-O2', '-fopenmp', '-std=c99'])
 
-libvc5_gcc_O3 = Extension(name='wave_1d_fd_perf.libvc5_gcc_O3', sources=['wave_1d_fd_perf/vc5.c'], extra_compile_args=['-march=native', '-O3', '-fopenmp'])
+libvc5_gcc_O3 = Extension(name='wave_1d_fd_perf.libvc5_gcc_O3', sources=['wave_1d_fd_perf/vc5.c'], extra_compile_args=['-march=native', '-O3', '-fopenmp', '-std=c99'])
 
-libvc5_gcc_Ofast = Extension(name='wave_1d_fd_perf.libvc5_gcc_Ofast', sources=['wave_1d_fd_perf/vc5.c'], extra_compile_args=['-march=native', '-Ofast', '-fopenmp'])
+libvc5_gcc_Ofast = Extension(name='wave_1d_fd_perf.libvc5_gcc_Ofast', sources=['wave_1d_fd_perf/vc5.c'], extra_compile_args=['-march=native', '-Ofast', '-fopenmp', '-std=c99'])
 
 numpy.distutils.core.setup(
         name='wave_1d_fd_perf',

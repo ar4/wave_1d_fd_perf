@@ -1,7 +1,7 @@
 """Test the propagators."""
 import pytest
 import numpy as np
-from wave_1d_fd_perf import (VPy1, VPy2, VNumba1, VNumba2, VNumba3, VNumba4,
+from wave_1d_fd_perf.propagators import (VPy1, VPy2, VNumba1, VNumba2, VNumba3, VNumba4,
                              VFortran1, VFortran2, VFortran3,
                              VC1_gcc, VC2_gcc_O2, VC2_gcc_O3, VC2_gcc_Ofast,
                              VC2_gcc_Ofast_autopar, VC3_gcc, VC4_gcc,

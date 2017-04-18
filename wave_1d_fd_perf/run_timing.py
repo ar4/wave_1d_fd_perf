@@ -2,12 +2,12 @@
 from timeit import repeat
 import numpy as np
 import pandas as pd
-from wave_1d_fd_perf import (VPy1, VPy2, VNumba1, VNumba2, VNumba3, VNumba4,
+from wave_1d_fd_perf.propagators import (VPy1, VPy2, VNumba1, VNumba2, VNumba3, VNumba4,
                              VFortran1, VFortran2, VFortran3,
                              VC1_gcc, VC2_gcc_O2, VC2_gcc_O3, VC2_gcc_Ofast,
                              VC2_gcc_Ofast_autopar, VC3_gcc, VC4_gcc,
                              VC5_gcc_O2, VC5_gcc_O3, VC5_gcc_Ofast)
-from test_wave_1d_fd_perf import ricker
+from wave_1d_fd_perf.test_wave_1d_fd_perf import ricker
 
 def run_timing_num_steps():
     """Time implementations as num_steps varies."""

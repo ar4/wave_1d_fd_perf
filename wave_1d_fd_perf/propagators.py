@@ -5,9 +5,9 @@ import concurrent.futures
 from ctypes import c_int, c_float
 import numpy as np
 from numba import jit
-import vfortran1
-import vfortran2
-import vfortran3
+from wave_1d_fd_perf import vfortran1
+from wave_1d_fd_perf import vfortran2
+from wave_1d_fd_perf import vfortran3
 
 class Propagator(object):
     """An 8th order finite difference propagator for the 1D wave equation."""

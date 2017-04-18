@@ -31,6 +31,7 @@ numpy.distutils.core.setup(
         description='Performance analysis of different implementations of 1d finite difference wave propagation',
         url='https://github.com/ar4/wave_1d_fd_perf',
         author='Alan Richardson',
+        author_email='alan@ausargeo.com',
         license='MIT',
         packages=['wave_1d_fd_perf'],
         install_requires=['numpy','pandas','numba'],

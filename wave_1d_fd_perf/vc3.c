@@ -1,3 +1,5 @@
+#include <omp.h>
+
 void step(
     float * restrict f,
     float * restrict fp,

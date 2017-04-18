@@ -1,7 +1,6 @@
 """Propagate a 1D wavefield using different implementations of an 8th order
 finite difference method so that runtimes can be compared.
 """
-import os
 import concurrent.futures
 from ctypes import c_int, c_float
 import numpy as np
@@ -355,8 +354,6 @@ class VC1_gcc(Propagator):
     def __init__(self, model, dx, dt=None):
         super(VC1_gcc, self).__init__(model, dx, dt)
 
-        print(wave_1d_fd_perf.__path__[0])
-        print(os.listdir(wave_1d_fd_perf.__path__[0]))
         self._libvc1 = np.ctypeslib.load_library('libvc1_gcc', wave_1d_fd_perf.__path__[0])
         self._libvc1.step.argtypes = \
                 [np.ctypeslib.ndpointer(dtype=np.float32, ndim=1,

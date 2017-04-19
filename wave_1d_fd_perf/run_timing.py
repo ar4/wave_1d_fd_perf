@@ -9,13 +9,9 @@ from wave_1d_fd_perf.propagators import (VPy1, VPy2, VNumba1, VNumba2, VNumba3, 
                              VC5_gcc_O2, VC5_gcc_O3, VC5_gcc_Ofast)
 from wave_1d_fd_perf.test_wave_1d_fd_perf import ricker
 
-def run_timing_num_steps():
+def run_timing_num_steps(num_repeat=10, num_steps=range(0, 110, 10), model_size=1000):
     """Time implementations as num_steps varies."""
 
-    num_repeat = 10
-
-    num_steps = range(0, 110, 10)
-    model_size = 1000
     versions = _versions()
 
     times = pd.DataFrame(columns=['version', 'num_steps', 'model_size', 'time'])
@@ -27,13 +23,9 @@ def run_timing_num_steps():
     return times
 
 
-def run_timing_model_size():
+def run_timing_model_size(num_repeat=10, num_steps=20, model_size=range(200, 2200, 200)):
     """Time implementations as model size varies."""
 
-    num_repeat = 10
-
-    num_steps = 10
-    model_sizes = range(200, 2200, 200)
     versions = _versions()
 
     times = pd.DataFrame(columns=['version', 'num_steps', 'model_size', 'time'])

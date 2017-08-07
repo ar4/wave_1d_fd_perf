@@ -1,4 +1,4 @@
-"""Propagate a 1D wavefield using different implementations of an 8th order
+"""Propagate a 1D wavefield using different implementations of a 16th order
 finite difference method so that runtimes can be compared.
 """
 import concurrent.futures
@@ -11,7 +11,7 @@ from wave_1d_fd_perf import vfortran2
 from wave_1d_fd_perf import vfortran3
 
 class Propagator(object):
-    """An 8th order finite difference propagator for the 1D wave equation."""
+    """A 16th order finite difference propagator for the 1D wave equation."""
     def __init__(self, model, dx, dt=None):
         self.nx = len(model)
         self.dx = np.float32(dx)
